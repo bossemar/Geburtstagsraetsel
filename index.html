@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rätselspiel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Startbildschirm -->
+    <div id="start-screen" class="screen">
+        <h1>Willkommen zum Rätselspiel!</h1>
+        <button id="start-btn">Spiel starten</button>
+    </div>
+
+    <!-- Spielbereich -->
+    <div id="game-screen" class="screen hidden">
+        <div id="progress">Rätsel 0/4 geschafft</div>
+        <canvas id="game-canvas" width="500" height="500"></canvas>
+        <div id="touch-controls">
+            <button data-dir="up">↑</button>
+            <button data-dir="left">←</button>
+            <button data-dir="down">↓</button>
+            <button data-dir="right">→</button>
+        </div>
+    </div>
+
+    <!-- Endbildschirm -->
+    <div id="end-screen" class="screen hidden">
+        <h1>Juhu, du hast es geschafft!</h1>
+        <button id="restart-btn">Erneut spielen</button>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
