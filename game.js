@@ -29,7 +29,7 @@ let objects = [
         y: 5,
         type: "info",
         text: "Hm, das scheint nicht richtig zu sein. Ich muss weitersuchen.",
-        img: 6
+        img: 4
     },
     {
         x: 6,
