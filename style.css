@@ -41,11 +41,15 @@ body {
     z-index: 10;
 }
 
-#dialog-overlay.hidden {
-    position: fixed;
-    inset: 0;
+#game-screen {
+    position: relative; /* Wichtig für Overlay-Positionierung */
+}
+
+#dialog-overlay {
+    position: absolute; /* relativ zu #game-screen */
+    inset: 0;           /* füllt den gesamten Bereich von #game-screen */
     background: rgba(0, 0, 0, 0.5);
-    display: none !important;  /* wichtig, um Rendering-Probleme zu verhindern */
+    display: flex;
     justify-content: center;
     align-items: center;
     z-index: 100;
@@ -58,6 +62,7 @@ body {
     width: 300px;
     text-align: center;
 }
+
 
 #dialog-box button {
     margin-top: 10px;
