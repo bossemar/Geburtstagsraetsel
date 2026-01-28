@@ -18,16 +18,34 @@ let player = { x: 0, y: 0 };
 
 // Objekte mit Positionen
 let objects = [
-    {x: 2, y: 3, solved: false, text: "Finde das Wort: E _ N _ E", answer: "ENTE"},
-    {x: 7, y: 1, solved: false, text: "Buchstabensalat: A P P L E", answer: "APPLE"},
-    {x: 4, y: 8, solved: false, text: "Was ist 5 + 3?", answer: "8"},
-    {x: 9, y: 6, solved: false, text: "Welches Tier miaut?", answer: "KATZE"}
+    {x: 2, y: 3, solved: false, text: "Finde das Wort: E _ N _ E", answer: "ENTE", img: 0},
+    {x: 7, y: 1, solved: false, text: "Buchstabensalat: A P P L E", answer: "APPLE", img: 1},
+    {x: 4, y: 8, solved: false, text: "Was ist 5 + 3?", answer: "8", img: 2},
+    {x: 9, y: 6, solved: false, text: "Welches Tier miaut?", answer: "KATZE", img: 3}
 ];
 
 // Sounds
 const moveSound = new Audio('sounds/move.wav');
 const correctSound = new Audio('sounds/correct.wav');
 const wrongSound = new Audio('sounds/wrong.mp3');
+
+// Bilder
+
+const playerImage = new Image();
+playerImage.src = 'images/player.png';
+
+const objectImages = [
+    new Image(),
+    new Image(),
+    new Image(),
+    new Image()
+];
+
+objectImages[0].src = 'images/object1.png';
+objectImages[1].src = 'images/object2.png';
+objectImages[2].src = 'images/object3.png';
+objectImages[3].src = 'images/object4.png';
+
 
 // Fortschritt
 let solvedCount = 0;
@@ -98,18 +116,32 @@ function drawGame() {
         ctx.stroke();
     }
 
-    // Objekte
-    objects.forEach(obj => {
-        if(!obj.solved){
-            ctx.fillStyle = "orange";
-            ctx.fillRect(obj.x*tileSize, obj.y*tileSize, tileSize, tileSize);
-        }
-    });
+   // Objekte (mit Bildern)
+objects.forEach(obj => {
+    if (!obj.solved) {
+        const img = objectImages[obj.img];
+        ctx.drawImage(
+            img,
+            obj.x * tileSize,
+            obj.y * tileSize,
+            tileSize,
+            tileSize
+        );
+    }
+});
 
-    // Spielfigur
-    ctx.fillStyle = "blue";
-    ctx.fillRect(player.x*tileSize, player.y*tileSize, tileSize, tileSize);
+    // Spielfigur (mit Bild)
+    //ctx.fillStyle = "blue";
+    //ctx.fillRect(player.x*tileSize, player.y*tileSize, tileSize, tileSize);
 
+    ctx.drawImage(
+    playerImage,
+    player.x * tileSize,
+    player.y * tileSize,
+    tileSize,
+    tileSize
+);
+    
     // Fortschritt
     progressEl.textContent = `Rätsel ${solvedCount}/${objects.length} geschafft`;
 }
