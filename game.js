@@ -117,7 +117,7 @@ ctx.drawImage(
 
     
     // Raster
-  //  ctx.strokeStyle = "#ccc";
+  /*  ctx.strokeStyle = "#ccc";
     for(let i=0;i<=gridSize;i++){
         ctx.beginPath();
         ctx.moveTo(i*tileSize,0);
@@ -128,7 +128,7 @@ ctx.drawImage(
         ctx.moveTo(0,i*tileSize);
         ctx.lineTo(gridSize*tileSize,i*tileSize);
         ctx.stroke();
-    }
+    }*/
 
    // Objekte (mit Bildern)
 objects.forEach(obj => {
