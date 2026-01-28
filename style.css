@@ -12,6 +12,13 @@ body {
     text-align: center;
 }
 
+/* Für game-screen spezifisch */
+#game-screen {
+    position: relative; /* wichtig für Overlay */
+    width: 500px;       /* gleiche Breite wie Canvas */
+    margin: 0 auto;     /* zentriert auf Seite */
+}
+
 .hidden {
     display: none;
 }
