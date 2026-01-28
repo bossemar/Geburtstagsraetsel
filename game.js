@@ -196,10 +196,8 @@ if (showSuccessFlash) {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
-
     // Falsche Antwort 
 ctx.restore();
-
     
 }
 
@@ -207,48 +205,7 @@ function checkObject() {
     const obj = objects.find(o => o.x === player.x && o.y === player.y);
     if (!obj || dialogOpen) return;
     openDialog(obj); 
-
-    // Dialogobjekt (kein Rätsel)
- //   if (obj.type === "info") {
-   //     alert(obj.text);
-     //   return;
-    }
-/*
-    // Rätselobjekt
-if (obj.type === "puzzle" && !obj.solved) {
-
-    // Text-Eingabe-Rätsel (bestehend)
-    if (!obj.puzzleType || obj.puzzleType === "input") {
-        const userAnswer = prompt(obj.text);
-        if (
-            userAnswer &&
-            userAnswer.trim().toUpperCase() === obj.answer.toUpperCase()
-        ) {
-            solvePuzzle(obj);
-        } else {
-            triggerErrorFeedback();
-        }
-    }
-
-    // Multiple-Choice-Rätsel (neu)
-    if (obj.puzzleType === "choice") {
-        let message = obj.text + "\n\n";
-        obj.choices.forEach((c, i) => {
-            message += `${i + 1}: ${c}\n`;
-        });
-
-        const selection = prompt(message);
-        const index = parseInt(selection, 10) - 1;
-
-        if (index === obj.correctIndex) {
-            solvePuzzle(obj);
-        } else {
-            triggerErrorFeedback();
-        }
-    }
 }
-*/
-//}
 
 function solvePuzzle(obj) {
     triggerSuccessFeedback();
