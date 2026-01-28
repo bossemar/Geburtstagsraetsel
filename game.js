@@ -61,6 +61,11 @@ objectImages[5].src = 'images/object6.png';
 // Fortschritt
 let solvedCount = 0;
 
+// Visuelles Feedback
+let showErrorFlash = false;
+
+let shakeOffset = 0;
+
 // ---------- Event-Listener ----------
 startBtn.addEventListener('click', () => {
     startScreen.classList.add('hidden');
@@ -111,7 +116,12 @@ function move(dx, dy) {
 }
 
 function drawGame() {
-    // ctx.clearRect(0,0,canvas.width, canvas.height);
+
+    // Fehlermeldung wenn falsch
+    const offset = shakeOffset ? Math.random() * shakeOffset - shakeOffset / 2 : 0;
+    ctx.save();
+    ctx.translate(offset, 0);
+
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -149,11 +159,24 @@ ctx.drawImage(
     tileSize,
     tileSize
 );
+
+  // Visuelles Feedback bei Fehler
+if (showErrorFlash) {
+    ctx.fillStyle = 'rgba(255, 0, 0, 0.3)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
     
     // Fortschritt
  const totalPuzzles = objects.filter(o => o.type === "puzzle").length;
-progressEl.textContent = `Rätsel ${solvedCount}/${totalPuzzles} geschafft`;
+progressEl.textContent = `🎯 ${solvedCount}/${totalPuzzles} geschafft`;
 
+
+}
+
+    // Falsche Antwort 
+ctx.restore();
+
+    
 }
 
 function checkObject() {
@@ -178,7 +201,7 @@ if (obj.type === "puzzle" && !obj.solved) {
         ) {
             solvePuzzle(obj);
         } else {
-            wrongSound.play();
+            triggerErrorFeedback();
         }
     }
 
@@ -195,7 +218,7 @@ if (obj.type === "puzzle" && !obj.solved) {
         if (index === obj.correctIndex) {
             solvePuzzle(obj);
         } else {
-            wrongSound.play();
+            triggerErrorFeedback();
         }
     }
 }
@@ -213,6 +236,23 @@ function solvePuzzle(obj) {
         gameScreen.classList.add('hidden');
         endScreen.classList.remove('hidden');
     }
+}
+
+function triggerErrorFeedback() {
+    wrongSound.play();
+    showErrorFlash = true;
+    drawGame();
+
+    setTimeout(() => {
+        showErrorFlash = false;
+        drawGame();
+    }, 300);
+    shakeOffset = 10;
+
+setTimeout(() => {
+    shakeOffset = 0;
+}, 300);
+
 }
 
 
