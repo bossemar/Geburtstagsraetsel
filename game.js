@@ -29,14 +29,14 @@ let objects = [
         y: 5,
         type: "info",
         text: "Hm, das scheint nicht richtig zu sein. Ich muss weitersuchen.",
-        img: 0
+        img: 6
     },
     {
         x: 6,
         y: 4,
         type: "info",
         text: "Hm, das scheint nicht richtig zu sein. Ich muss weitersuchen.",
-        img: 1
+        img: 5
     }
 ];
 
@@ -57,6 +57,8 @@ const objectImages = [
     new Image(),
     new Image(),
     new Image(),
+    new Image(),
+    new Image(),
     new Image()
 ];
 
@@ -64,6 +66,8 @@ objectImages[0].src = 'images/object1.png';
 objectImages[1].src = 'images/object2.png';
 objectImages[2].src = 'images/object3.png';
 objectImages[3].src = 'images/object4.png';
+objectImages[4].src = 'images/object5.png';
+objectImages[5].src = 'images/object6.png';
 
 // Fortschritt
 let solvedCount = 0;
