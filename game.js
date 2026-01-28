@@ -247,7 +247,10 @@ function triggerSuccessFeedback() {
         drawGame();
     }, 300);
 }
+
 function openDialog(obj) {
+    if (!obj) return; // keine Aktion, wenn kein Objekt
+
     dialogOpen = true;
     activeObject = obj;
 
@@ -257,6 +260,7 @@ function openDialog(obj) {
     dialogInput.classList.add('hidden');
     dialogChoices.classList.add('hidden');
     dialogChoices.innerHTML = '';
+    dialogConfirmBtn.style.display = 'inline-block'; // sicherstellen, dass OK sichtbar ist
 
     // Info-Dialog
     if (obj.type === "info") {
@@ -282,7 +286,7 @@ function openDialog(obj) {
     // Multiple Choice
     if (obj.type === "puzzle" && obj.puzzleType === "choice") {
         dialogChoices.classList.remove('hidden');
-        dialogConfirmBtn.classList.add('hidden');
+        dialogConfirmBtn.style.display = 'none'; // Button ausblenden für Choices
 
         obj.choices.forEach((choice, index) => {
             const btn = document.createElement('button');
@@ -299,6 +303,8 @@ function openDialog(obj) {
         });
     }
 }
+
+
 function closeDialog() {
     dialogOverlay.classList.add('hidden');
     dialogConfirmBtn.classList.remove('hidden');
