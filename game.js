@@ -86,6 +86,9 @@ let showSuccessFlash = false;
 startBtn.addEventListener('click', () => {
     startScreen.classList.add('hidden');
     gameScreen.classList.remove('hidden');
+
+    closeDialog(); // 🔴 DAS FEHLTE
+    
     drawGame();
 });
 
@@ -307,10 +310,17 @@ function openDialog(obj) {
 }
 
 
-
 function closeDialog() {
     dialogOverlay.classList.add('hidden');
-    dialogConfirmBtn.classList.remove('hidden');
+    dialogText.textContent = '';
+    dialogInput.value = '';
+    dialogInput.classList.add('hidden');
+    dialogChoices.innerHTML = '';
+    dialogChoices.classList.add('hidden');
+
+    dialogConfirmBtn.onclick = null;
+    dialogConfirmBtn.style.display = 'inline-block';
+
     dialogOpen = false;
     activeObject = null;
 }
