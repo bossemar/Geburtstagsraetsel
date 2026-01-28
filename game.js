@@ -22,6 +22,22 @@ let objects = [
     {x: 7, y: 1, solved: false, text: "Buchstabensalat: A P P L E", answer: "APPLE", img: 1},
     {x: 4, y: 8, solved: false, text: "Was ist 5 + 3?", answer: "8", img: 2},
     {x: 9, y: 6, solved: false, text: "Welches Tier miaut?", answer: "KATZE", img: 3}
+
+     // Dialogobjekte (neue)
+    {
+        x: 1,
+        y: 5,
+        type: "info",
+        text: "Hm, das scheint nicht richtig zu sein. Ich muss weitersuchen.",
+        img: 0
+    },
+    {
+        x: 6,
+        y: 4,
+        type: "info",
+        text: "Hm, das scheint nicht richtig zu sein. Ich muss weitersuchen.",
+        img: 1
+    }
 ];
 
 // Sounds
@@ -115,34 +131,22 @@ ctx.drawImage(
     canvas.height
 );
 
-    
-    // Raster
-  /*  ctx.strokeStyle = "#ccc";
-    for(let i=0;i<=gridSize;i++){
-        ctx.beginPath();
-        ctx.moveTo(i*tileSize,0);
-        ctx.lineTo(i*tileSize,gridSize*tileSize);
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.moveTo(0,i*tileSize);
-        ctx.lineTo(gridSize*tileSize,i*tileSize);
-        ctx.stroke();
-    }*/
 
    // Objekte (mit Bildern)
+    
 objects.forEach(obj => {
-    if (!obj.solved) {
-        const img = objectImages[obj.img];
-        ctx.drawImage(
-            img,
-            obj.x * tileSize,
-            obj.y * tileSize,
-            tileSize,
-            tileSize
-        );
-    }
+    if (obj.type === "puzzle" && obj.solved) return;
+
+    const img = objectImages[obj.img];
+    ctx.drawImage(
+        img,
+        obj.x * tileSize,
+        obj.y * tileSize,
+        tileSize,
+        tileSize
+    );
 });
+
 
 // Spielfigur 
 ctx.drawImage(
@@ -154,19 +158,34 @@ ctx.drawImage(
 );
     
     // Fortschritt
-    progressEl.textContent = `Rätsel ${solvedCount}/${objects.length} geschafft`;
+ const totalPuzzles = objects.filter(o => o.type === "puzzle").length;
+progressEl.textContent = `Rätsel ${solvedCount}/${totalPuzzles} geschafft`;
+
 }
 
 function checkObject() {
-    const obj = objects.find(o => !o.solved && o.x === player.x && o.y === player.y);
-    if(obj){
-        const userAnswer = prompt(obj.text); // Eingabe nur bei Dialog
-        if(userAnswer && userAnswer.trim().toUpperCase() === obj.answer.toUpperCase()){
+    const obj = objects.find(o => o.x === player.x && o.y === player.y);
+    if (!obj) return;
+
+    // Dialogobjekt (kein Rätsel)
+    if (obj.type === "info") {
+        alert(obj.text);
+        return;
+    }
+
+    // Rätselobjekt
+    if (obj.type === "puzzle" && !obj.solved) {
+        const userAnswer = prompt(obj.text);
+        if (
+            userAnswer &&
+            userAnswer.trim().toUpperCase() === obj.answer.toUpperCase()
+        ) {
             correctSound.play();
             obj.solved = true;
             solvedCount++;
             drawGame();
-            if(solvedCount === objects.length){
+
+            if (solvedCount === objects.filter(o => o.type === "puzzle").length) {
                 gameScreen.classList.add('hidden');
                 endScreen.classList.remove('hidden');
             }
@@ -175,4 +194,5 @@ function checkObject() {
         }
     }
 }
+
 
