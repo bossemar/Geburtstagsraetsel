@@ -248,7 +248,7 @@ if (obj.type === "puzzle" && !obj.solved) {
     }
 }
 */
-}
+//}
 
 function solvePuzzle(obj) {
     triggerSuccessFeedback();
