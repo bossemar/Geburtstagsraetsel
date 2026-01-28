@@ -31,11 +31,11 @@ let player = { x: 0, y: 0 };
 
 // Objekte mit Positionen
 let objects = [
-    {x: 2, y: 3, type: "puzzle", solved: false, text: "Finde das Wort: E _ N _ E", answer: "ENTE", img: 0},
-    {x: 7, y: 1, type: "puzzle", puzzleType: "choice", solved: false,     text: "Welche Farbe hat der Himmel bei gutem Wetter?",
-    choices: ["Grün", "Blau", "Rot", "Gelb"], correctIndex: 1, img: 1},
-    {x: 4, y: 8, type: "puzzle", solved: false, text: "Was ist 5 + 3?", answer: "8", img: 2},
-    {x: 9, y: 6, type: "puzzle", solved: false, text: "Welches Tier miaut?", answer: "KATZE", img: 3},
+    {x: 2, y: 3, type: "puzzle", solved: false, text: "🧩 Buchstabensalat: SENSLEWL", answer: "WELLNESS", img: 0},
+    {x: 7, y: 1, type: "puzzle", puzzleType: "choice", solved: false,     text: "🧩 Welche der folgenden Eigenschaften beschreibt am besten einen typischen, trockenen Riesling aus Deutschland?",
+    choices: ["A: Schwere, buttrige Noten mit wenig Säure", "B: Leichte, knackige Säure mit Aromen von grünen Äpfeln und Zitrusfrüchten", "C: Dunkle Beerenaromen und Tannine", "D: Süße Süßweinaromen und Rosinen", correctIndex: 1, img: 1},
+    {x: 4, y: 8, type: "puzzle", solved: false, text: "🧩 Ich werde nass, wenn ich trockne - was bin ich?", answer: "HANDTUCH", img: 2},
+    {x: 9, y: 6, type: "puzzle", solved: false, text: "🧩 Vervollständige: _ A _ _U R _ G", answer: "HAMBURG", img: 3},
 
      // Dialogobjekte (neue)
     {x: 1, y: 5, type: "info", text: "Hm, das scheint nicht richtig zu sein. Ich muss weitersuchen.",img: 4},
