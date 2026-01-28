@@ -12,20 +12,17 @@ body {
     text-align: center;
 }
 
-/* Für game-screen spezifisch */
-#game-screen {
-    position: relative; /* wichtig für Overlay */
-    width: 500px;       /* gleiche Breite wie Canvas */
-    margin: 0 auto;     /* zentriert auf Seite */
+.hidden {
+    display: none !important;
 }
 
-.hidden {
-    display: none;
+#game-screen {
+    position: relative;
 }
 
 #game-canvas {
-    background-color: #ffffff;
     border: 2px solid #000;
+    display: block;
 }
 
 #touch-controls {
@@ -38,28 +35,14 @@ body {
     margin: 5px;
 }
 
-.dialog {
-    position: absolute;
-    background-color: #fff;
-    border: 2px solid #000;
-    border-radius: 10px;
-    padding: 10px;
-    max-width: 200px;
-    z-index: 10;
-}
-
-#game-screen {
-    position: relative; /* Wichtig für Overlay-Positionierung */
-}
-
 #dialog-overlay {
-    position: absolute; /* relativ zu #game-screen */
-    inset: 0;           /* füllt den gesamten Bereich von #game-screen */
-    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 100;
+    z-index: 10;
 }
 
 #dialog-box {
@@ -69,7 +52,6 @@ body {
     width: 300px;
     text-align: center;
 }
-
 
 #dialog-box button {
     margin-top: 10px;
@@ -81,4 +63,3 @@ body {
     width: 100%;
     margin: 5px 0;
 }
-
