@@ -13,6 +13,17 @@ const restartBtn = document.getElementById('restart-btn');
 const tileSize = 50;
 const gridSize = 10;
 
+const dialogOverlay = document.getElementById('dialog-overlay');
+const dialogText = document.getElementById('dialog-text');
+const dialogInput = document.getElementById('dialog-input');
+const dialogChoices = document.getElementById('dialog-choices');
+const dialogConfirmBtn = document.getElementById('dialog-confirm-btn');
+
+let dialogOpen = false;
+let activeObject = null;
+
+
+
 // Spielfigur
 let player = { x: 0, y: 0 };
 
@@ -82,7 +93,7 @@ restartBtn.addEventListener('click', () => {
 
 document.addEventListener('keydown', (e) => {
     if(gameScreen.classList.contains('hidden')) return;
-
+    if (dialogOpen) return;
     switch(e.key) {
         case 'ArrowUp': move(0, -1); break;
         case 'ArrowDown': move(0, 1); break;
@@ -192,7 +203,8 @@ ctx.restore();
 
 function checkObject() {
     const obj = objects.find(o => o.x === player.x && o.y === player.y);
-    if (!obj) return;
+    if (!obj || dialogOpen) return;
+    openDialog(obj); 
 
     // Dialogobjekt (kein Rätsel)
     if (obj.type === "info") {
@@ -244,7 +256,7 @@ function solvePuzzle(obj) {
 
     const totalPuzzles = objects.filter(o => o.type === "puzzle").length;
     if (solvedCount === totalPuzzles) {
-        gameScreen.classList.add('hidden');
+        gameScreen.classList.add('hidden'); 
         endScreen.classList.remove('hidden');
     }
 }
@@ -276,6 +288,65 @@ function triggerSuccessFeedback() {
         drawGame();
     }, 300);
 }
+function openDialog(obj) {
+    dialogOpen = true;
+    activeObject = obj;
+
+    dialogText.textContent = obj.text;
+    dialogOverlay.classList.remove('hidden');
+
+    dialogInput.classList.add('hidden');
+    dialogChoices.classList.add('hidden');
+    dialogChoices.innerHTML = '';
+
+    // Info-Dialog
+    if (obj.type === "info") {
+        dialogConfirmBtn.onclick = closeDialog;
+    }
+
+    // Texteingabe-Rätsel
+    if (obj.type === "puzzle" && (!obj.puzzleType || obj.puzzleType === "input")) {
+        dialogInput.value = '';
+        dialogInput.classList.remove('hidden');
+
+        dialogConfirmBtn.onclick = () => {
+            const value = dialogInput.value.trim().toUpperCase();
+            if (value === obj.answer.toUpperCase()) {
+                solvePuzzle(obj);
+                closeDialog();
+            } else {
+                triggerErrorFeedback();
+            }
+        };
+    }
+
+    // Multiple Choice
+    if (obj.type === "puzzle" && obj.puzzleType === "choice") {
+        dialogChoices.classList.remove('hidden');
+        dialogConfirmBtn.classList.add('hidden');
+
+        obj.choices.forEach((choice, index) => {
+            const btn = document.createElement('button');
+            btn.textContent = choice;
+            btn.onclick = () => {
+                if (index === obj.correctIndex) {
+                    solvePuzzle(obj);
+                    closeDialog();
+                } else {
+                    triggerErrorFeedback();
+                }
+            };
+            dialogChoices.appendChild(btn);
+        });
+    }
+}
+function closeDialog() {
+    dialogOverlay.classList.add('hidden');
+    dialogConfirmBtn.classList.remove('hidden');
+    dialogOpen = false;
+    activeObject = null;
+}
+
 
 
 
