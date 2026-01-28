@@ -249,7 +249,7 @@ function triggerSuccessFeedback() {
 }
 
 function openDialog(obj) {
-    if (!obj) return; // keine Aktion, wenn kein Objekt
+    if (!obj) return;
 
     dialogOpen = true;
     activeObject = obj;
@@ -257,52 +257,55 @@ function openDialog(obj) {
     dialogText.textContent = obj.text;
     dialogOverlay.classList.remove('hidden');
 
+    // Grundzustand
     dialogInput.classList.add('hidden');
     dialogChoices.classList.add('hidden');
     dialogChoices.innerHTML = '';
-    dialogConfirmBtn.style.display = 'inline-block'; // sicherstellen, dass OK sichtbar ist
+    dialogConfirmBtn.style.display = 'inline-block';
 
-    // Info-Dialog
+    // Event-Handler vorher entfernen
+    dialogConfirmBtn.onclick = null;
+
     if (obj.type === "info") {
         dialogConfirmBtn.onclick = closeDialog;
     }
 
-    // Texteingabe-Rätsel
-    if (obj.type === "puzzle" && (!obj.puzzleType || obj.puzzleType === "input")) {
-        dialogInput.value = '';
-        dialogInput.classList.remove('hidden');
-
-        dialogConfirmBtn.onclick = () => {
-            const value = dialogInput.value.trim().toUpperCase();
-            if (value === obj.answer.toUpperCase()) {
-                solvePuzzle(obj);
-                closeDialog();
-            } else {
-                triggerErrorFeedback();
-            }
-        };
-    }
-
-    // Multiple Choice
-    if (obj.type === "puzzle" && obj.puzzleType === "choice") {
-        dialogChoices.classList.remove('hidden');
-        dialogConfirmBtn.style.display = 'none'; // Button ausblenden für Choices
-
-        obj.choices.forEach((choice, index) => {
-            const btn = document.createElement('button');
-            btn.textContent = choice;
-            btn.onclick = () => {
-                if (index === obj.correctIndex) {
+    if (obj.type === "puzzle") {
+        if (!obj.puzzleType || obj.puzzleType === "input") {
+            dialogInput.value = '';
+            dialogInput.classList.remove('hidden');
+            dialogConfirmBtn.onclick = () => {
+                const value = dialogInput.value.trim().toUpperCase();
+                if (value === obj.answer.toUpperCase()) {
                     solvePuzzle(obj);
                     closeDialog();
                 } else {
                     triggerErrorFeedback();
                 }
             };
-            dialogChoices.appendChild(btn);
-        });
+        }
+
+        if (obj.puzzleType === "choice") {
+            dialogChoices.classList.remove('hidden');
+            dialogConfirmBtn.style.display = 'none'; // Button ausblenden
+
+            obj.choices.forEach((choice, index) => {
+                const btn = document.createElement('button');
+                btn.textContent = choice;
+                btn.onclick = () => {
+                    if (index === obj.correctIndex) {
+                        solvePuzzle(obj);
+                        closeDialog();
+                    } else {
+                        triggerErrorFeedback();
+                    }
+                };
+                dialogChoices.appendChild(btn);
+            });
+        }
     }
 }
+
 
 
 function closeDialog() {
