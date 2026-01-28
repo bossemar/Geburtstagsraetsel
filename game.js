@@ -14,13 +14,7 @@ const tileSize = 50;
 const gridSize = 10;
 
 // Spielfigur
-let player = {
-    x: 0,
-    y: 0,
-    state: 'idle',      // 'idle' | 'walk'
-    frame: 0,
-    frameTimer: 0
-};
+let player = { x: 0, y: 0 };
 
 // Objekte mit Positionen
 let objects = [
@@ -51,10 +45,6 @@ objectImages[0].src = 'images/object1.png';
 objectImages[1].src = 'images/object2.png';
 objectImages[2].src = 'images/object3.png';
 objectImages[3].src = 'images/object4.png';
-
-// ---------- Animation ----------
-const spriteSize = 64;          // Größe eines Frames im PNG
-const animationSpeed = 10;      // je höher, desto langsamer
 
 // Fortschritt
 let solvedCount = 0;
@@ -102,7 +92,6 @@ function move(dx, dy) {
     if(newX >=0 && newX < gridSize && newY >=0 && newY < gridSize){
         player.x = newX;
         player.y = newY;
-        player.state = 'walk';
         moveSound.play();
         drawGame();
         checkObject();
@@ -140,13 +129,9 @@ objects.forEach(obj => {
     }
 });
 
-// Spielfigur (animiert)
+// Spielfigur 
 ctx.drawImage(
     playerImage,
-    player.frame * spriteSize, // X im Sprite
-    0,                          // Y im Sprite (erste Reihe)
-    spriteSize,
-    spriteSize,
     player.x * tileSize,
     player.y * tileSize,
     tileSize,
@@ -175,18 +160,4 @@ function checkObject() {
         }
     }
 }
-setInterval(() => {
-    if (player.state === 'walk') {
-        player.frameTimer++;
-        if (player.frameTimer >= animationSpeed) {
-            player.frame = (player.frame + 1) % 4; // 4 Walking-Frames
-            player.frameTimer = 0;
-        }
-    } else {
-        player.frame = 0; // Idle-Frame
-    }
-
-    player.state = 'idle';
-    drawGame();
-}, 100);
 
