@@ -66,6 +66,9 @@ let showErrorFlash = false;
 
 let shakeOffset = 0;
 
+let showSuccessFlash = false;
+
+
 // ---------- Event-Listener ----------
 startBtn.addEventListener('click', () => {
     startScreen.classList.add('hidden');
@@ -166,12 +169,20 @@ if (showErrorFlash) {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     
+    
     // Fortschritt
  const totalPuzzles = objects.filter(o => o.type === "puzzle").length;
 progressEl.textContent = `🎯 ${solvedCount}/${totalPuzzles} geschafft`;
 
 
 }
+
+    // Visuelles Feedback bei Erfolg
+if (showSuccessFlash) {
+    ctx.fillStyle = 'rgba(0, 200, 0, 0.3)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
 
     // Falsche Antwort 
 ctx.restore();
@@ -226,7 +237,7 @@ if (obj.type === "puzzle" && !obj.solved) {
 }
 
 function solvePuzzle(obj) {
-    correctSound.play();
+    triggerSuccessFeedback();
     obj.solved = true;
     solvedCount++;
     drawGame();
@@ -254,6 +265,18 @@ setTimeout(() => {
 }, 300);
 
 }
+
+function triggerSuccessFeedback() {
+    correctSound.play();
+    showSuccessFlash = true;
+    drawGame();
+
+    setTimeout(() => {
+        showSuccessFlash = false;
+        drawGame();
+    }, 300);
+}
+
 
 
 
