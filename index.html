@@ -7,22 +7,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-    <!-- Dialog Overlay -->
-<div id="dialog-overlay" class="hidden">
-    <div id="dialog-box">
-        <p id="dialog-text"></p>
-
-        <!-- Texteingabe -->
-        <input type="text" id="dialog-input" class="hidden" />
-
-        <!-- Multiple Choice -->
-        <div id="dialog-choices" class="hidden"></div>
-
-        <button id="dialog-confirm-btn">OK</button>
-    </div>
-</div>
-
-
     
 <body>
     <!-- Startbildschirm -->
@@ -49,6 +33,21 @@
         <button id="restart-btn">♻️Erneut spielen</button>
     </div>
 
+      <!-- Dialog Overlay – jetzt korrekt im Body -->
+    <div id="dialog-overlay" class="hidden">
+        <div id="dialog-box">
+            <p id="dialog-text"></p>
+
+            <!-- Texteingabe -->
+            <input type="text" id="dialog-input" class="hidden" />
+
+            <!-- Multiple Choice -->
+            <div id="dialog-choices" class="hidden"></div>
+
+            <button id="dialog-confirm-btn">OK</button>
+        </div>
+    </div>
+    
     <script src="game.js"></script>
 </body>
 </html>
