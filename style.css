@@ -63,3 +63,31 @@ body {
     width: 100%;
     margin: 5px 0;
 }
+
+.endcard {
+    background: #f2f2f2;
+    border: 2px solid #ccc;
+    border-radius: 16px;
+    padding: 20px;
+    max-width: 400px;
+    margin: 0 auto 20px auto;
+    text-align: center;
+}
+
+.gift-image {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 12px;
+    margin: 15px 0;
+}
+
+.end-text {
+    font-size: 1.1rem;
+}
+#end-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
