@@ -19,7 +19,8 @@ let player = { x: 0, y: 0 };
 // Objekte mit Positionen
 let objects = [
     {x: 2, y: 3, type: "puzzle", solved: false, text: "Finde das Wort: E _ N _ E", answer: "ENTE", img: 0},
-    {x: 7, y: 1, type: "puzzle", solved: false, text: "Buchstabensalat: A P P L E", answer: "APPLE", img: 1},
+    {x: 7, y: 1, type: "puzzle", puzzleType: "choice", solved: false,     text: "Welche Farbe hat der Himmel bei gutem Wetter?",
+    choices: ["Grün", "Blau", "Rot", "Gelb"], correctIndex: 1, img: 1},
     {x: 4, y: 8, type: "puzzle", solved: false, text: "Was ist 5 + 3?", answer: "8", img: 2},
     {x: 9, y: 6, type: "puzzle", solved: false, text: "Welches Tier miaut?", answer: "KATZE", img: 3},
 
@@ -166,25 +167,55 @@ function checkObject() {
     }
 
     // Rätselobjekt
-    if (obj.type === "puzzle" && !obj.solved) {
+if (obj.type === "puzzle" && !obj.solved) {
+
+    // Text-Eingabe-Rätsel (bestehend)
+    if (!obj.puzzleType || obj.puzzleType === "input") {
         const userAnswer = prompt(obj.text);
         if (
             userAnswer &&
             userAnswer.trim().toUpperCase() === obj.answer.toUpperCase()
         ) {
-            correctSound.play();
-            obj.solved = true;
-            solvedCount++;
-            drawGame();
+            solvePuzzle(obj);
+        } else {
+            wrongSound.play();
+        }
+    }
 
-            if (solvedCount === objects.filter(o => o.type === "puzzle").length) {
-                gameScreen.classList.add('hidden');
-                endScreen.classList.remove('hidden');
-            }
+    // Multiple-Choice-Rätsel (neu)
+    if (obj.puzzleType === "choice") {
+        let message = obj.text + "\n\n";
+        obj.choices.forEach((c, i) => {
+            message += `${i + 1}: ${c}\n`;
+        });
+
+        const selection = prompt(message);
+        const index = parseInt(selection, 10) - 1;
+
+        if (index === obj.correctIndex) {
+            solvePuzzle(obj);
         } else {
             wrongSound.play();
         }
     }
 }
+
+}
+
+function solvePuzzle(obj) {
+    correctSound.play();
+    obj.solved = true;
+    solvedCount++;
+    drawGame();
+
+    const totalPuzzles = objects.filter(o => o.type === "puzzle").length;
+    if (solvedCount === totalPuzzles) {
+        gameScreen.classList.add('hidden');
+        endScreen.classList.remove('hidden');
+    }
+}
+
+
+
 
 
