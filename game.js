@@ -32,14 +32,15 @@ let player = { x: 0, y: 0 };
 // Objekte mit Positionen
 let objects = [
     {x: 2, y: 3, type: "puzzle", solved: false, text: "🧩 Buchstabensalat: SENSLEWL", answer: "WELLNESS", img: 0},
-    {x: 7, y: 1, type: "puzzle", puzzleType: "choice", solved: false,     text: "🧩 Welche der folgenden Eigenschaften beschreibt am besten einen typischen, trockenen Riesling aus Deutschland?",
+    {x: 7, y: 1, type: "puzzle", puzzleType: "choice", solved: false, text: "🧩 Welche der folgenden Eigenschaften beschreibt am besten einen typischen, trockenen Riesling aus Deutschland?",
     choices: ["A: Schwere, buttrige Noten mit wenig Säure", "B: Leichte, knackige Säure mit Aromen von grünen Äpfeln und Zitrusfrüchten", "C: Dunkle Beerenaromen und Tannine", "D: Süße Süßweinaromen und Rosinen"], correctIndex: 1, img: 1},
     {x: 4, y: 8, type: "puzzle", solved: false, text: "🧩 Ich werde nass, wenn ich trockne - was bin ich?", answer: "HANDTUCH", img: 2},
     {x: 9, y: 6, type: "puzzle", solved: false, text: "🧩 Vervollständige: _ A _ _U R _ G", answer: "HAMBURG", img: 3},
 
      // Dialogobjekte (neue)
     {x: 1, y: 5, type: "info", text: "Hm, das scheint nicht richtig zu sein. Ich muss weitersuchen.",img: 4},
-    {x: 6, y: 4, type: "info", text: "Hm, das scheint nicht richtig zu sein. Ich muss weitersuchen.", img: 5}
+    {x: 6, y: 4, type: "info", text: "Hm, das scheint nicht richtig zu sein. Ich muss weitersuchen.", img: 5}, 
+    { x: 4,y: 0,type: "puzzle",puzzleType: "input",locked: true,solved: false,text: "Deine Antworten: Wellness, Handtuch, Hamburg. Letzte Frage: Was ist also nun dein Geschenk? _ _ _",answer: "SPA",img: 6}
 ];
 
 // Sounds
@@ -70,6 +71,10 @@ objectImages[2].src = 'images/object3.png';
 objectImages[3].src = 'images/object4.png';
 objectImages[4].src = 'images/object5.png';
 objectImages[5].src = 'images/object6.png';
+
+objectImages.push(new Image());
+objectImages[6].src = 'images/object7.png';
+
 
 // Fortschritt
 let solvedCount = 0;
@@ -157,6 +162,7 @@ ctx.drawImage(
    // Objekte (mit Bildern)
     
 objects.forEach(obj => {
+    if (obj.locked) return;
     if (obj.type === "puzzle" && obj.solved) return;
 
     const img = objectImages[obj.img];
@@ -213,11 +219,20 @@ function solvePuzzle(obj) {
     solvedCount++;
     drawGame();
 
-    const totalPuzzles = objects.filter(o => o.type === "puzzle").length;
-    if (solvedCount === totalPuzzles) {
-        gameScreen.classList.add('hidden'); 
-        endScreen.classList.remove('hidden');
-    }
+const totalPuzzles = objects.filter(o => o.type === "puzzle" && !o.locked).length;
+const door = objects.find(o => o.locked === true);
+
+if (solvedCount === 4 && door) {
+    door.locked = false;
+    drawGame();
+    return;
+}
+
+if (solvedCount === totalPuzzles) {
+    gameScreen.classList.add('hidden');
+    endScreen.classList.remove('hidden');
+}
+
 }
 
 function triggerErrorFeedback() {
