@@ -207,9 +207,9 @@ function checkObject() {
     openDialog(obj); 
 
     // Dialogobjekt (kein Rätsel)
-    if (obj.type === "info") {
-        alert(obj.text);
-        return;
+ //   if (obj.type === "info") {
+   //     alert(obj.text);
+     //   return;
     }
 /*
     // Rätselobjekt
