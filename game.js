@@ -21,7 +21,7 @@ let objects = [
     {x: 2, y: 3, type: "puzzle", solved: false, text: "Finde das Wort: E _ N _ E", answer: "ENTE", img: 0},
     {x: 7, y: 1, type: "puzzle", solved: false, text: "Buchstabensalat: A P P L E", answer: "APPLE", img: 1},
     {x: 4, y: 8, type: "puzzle", solved: false, text: "Was ist 5 + 3?", answer: "8", img: 2},
-    {x: 9, y: 6, type: "puzzle", solved: false, text: "Welches Tier miaut?", answer: "KATZE", img: 3}
+    {x: 9, y: 6, type: "puzzle", solved: false, text: "Welches Tier miaut?", answer: "KATZE", img: 3},
 
      // Dialogobjekte (neue)
     {x: 1, y: 5, type: "info", text: "Hm, das scheint nicht richtig zu sein. Ich muss weitersuchen.",img: 4},
