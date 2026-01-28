@@ -22,6 +22,8 @@ const dialogConfirmBtn = document.getElementById('dialog-confirm-btn');
 let dialogOpen = false;
 let activeObject = null;
 
+dialogOverlay.classList.add('hidden');  // sorgt dafür, dass es wirklich versteckt ist
+dialogOpen = false;
 
 
 // Spielfigur
