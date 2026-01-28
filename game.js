@@ -336,6 +336,13 @@ function openDialog(obj) {
 
 
 function closeDialog() {
+
+    // 🔹 zuerst noch mit activeObject arbeiten
+    if (activeObject && activeObject.type === "info") {
+        activeObject.solved = true;
+        activeObject.locked = true; // Info-Dialog nur einmal
+    }
+
     dialogOverlay.classList.add('hidden');
     dialogText.textContent = '';
     dialogInput.value = '';
@@ -347,14 +354,9 @@ function closeDialog() {
     dialogConfirmBtn.style.display = 'inline-block';
 
     dialogOpen = false;
-    activeObject = null;
-
-    if (activeObject && activeObject.type === "info") {
-    activeObject.solved = true;
+    activeObject = null; // 🔹 GANZ ZUM SCHLUSS
 }
-    activeObject.locked = true;
 
-}
 
 
 
