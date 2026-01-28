@@ -184,13 +184,6 @@ if (showErrorFlash) {
     ctx.fillStyle = 'rgba(255, 0, 0, 0.3)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    
-    
-    // Fortschritt
- const totalPuzzles = objects.filter(o => o.type === "puzzle").length;
-progressEl.textContent = `🎯 ${solvedCount}/${totalPuzzles} geschafft`;
-
-
 }
 
     // Visuelles Feedback bei Erfolg
@@ -199,9 +192,13 @@ if (showSuccessFlash) {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
-    // Falsche Antwort 
-ctx.restore();
+   // Fortschritt
+ const totalPuzzles = objects.filter(o => o.type === "puzzle").length;
+progressEl.textContent = `🎯 ${solvedCount}/${totalPuzzles} geschafft`;
     
+// Falsche Antwort 
+ctx.restore();
+
 }
 
 function checkObject() {
