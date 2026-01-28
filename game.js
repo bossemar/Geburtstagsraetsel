@@ -35,12 +35,15 @@ let objects = [
     {x: 7, y: 1, type: "puzzle", puzzleType: "choice", solved: false, text: "🧩 Welche der folgenden Eigenschaften beschreibt am besten einen typischen, trockenen Riesling aus Deutschland?",
     choices: ["A: Schwere, buttrige Noten mit wenig Säure", "B: Leichte, knackige Säure mit Aromen von grünen Äpfeln und Zitrusfrüchten", "C: Dunkle Beerenaromen und Tannine", "D: Süße Süßweinaromen und Rosinen"], correctIndex: 1, img: 1},
     {x: 4, y: 8, type: "puzzle", solved: false, text: "🧩 Ich werde nass, wenn ich trockne - was bin ich?", answer: "HANDTUCH", img: 2},
-    {x: 9, y: 6, type: "puzzle", solved: false, text: "🧩 Vervollständige: _ A _ _U R _ G", answer: "HAMBURG", img: 3},
+    {x: 9, y: 6, type: "puzzle", solved: false, text: "🧩 Vervollständige: _ A _ _U _ G", answer: "HAMBURG", img: 3},
 
      // Dialogobjekte (neue)
     {x: 1, y: 5, type: "info", text: "Hm, das scheint nicht richtig zu sein. Ich muss weitersuchen.",img: 4},
     {x: 6, y: 4, type: "info", text: "Hm, das scheint nicht richtig zu sein. Ich muss weitersuchen.", img: 5}, 
-    { x: 4,y: 0,type: "puzzle",puzzleType: "input",locked: true,solved: false,text: "Deine Antworten: Wellness, Handtuch, Hamburg. Letzte Frage: Was ist also nun dein Geschenk? _ _ _",answer: "SPA",img: 6}
+    { x: 4,y: 0,type: "puzzle",puzzleType: "input",locked: true,solved: false,text: "Deine Antworten: Wellness, Handtuch, Hamburg.\n Letzte Frage: Was ist also nun dein Geschenk? _ _ _",answer: "SPA",img: 6},
+    {type: "info",locked: true,text: "🚪 Eine Tür ist erschienen...\nVielleicht solltest du dort nachsehen."
+}
+
 ];
 
 // Sounds
@@ -211,6 +214,8 @@ function checkObject() {
     const obj = objects.find(o => o.x === player.x && o.y === player.y);
     if (!obj || dialogOpen) return;
     openDialog(obj); 
+    if (obj.solved) return;
+
 }
 
 function solvePuzzle(obj) {
@@ -220,13 +225,21 @@ function solvePuzzle(obj) {
     drawGame();
 
 const totalPuzzles = objects.filter(o => o.type === "puzzle" && !o.locked).length;
-const door = objects.find(o => o.locked === true);
+const door = objects.find(o => o.locked === true && o.img === 6);
+const infoDialog = objects.find(o => o.type === "info" && o.locked === true);
 
 if (solvedCount === 4 && door) {
     door.locked = false;
+
+    if (infoDialog) {
+        infoDialog.locked = false;
+        openDialog(infoDialog);
+    }
+
     drawGame();
     return;
 }
+
 
 if (solvedCount === totalPuzzles) {
     gameScreen.classList.add('hidden');
@@ -335,6 +348,12 @@ function closeDialog() {
 
     dialogOpen = false;
     activeObject = null;
+
+    if (activeObject && activeObject.type === "info") {
+    activeObject.solved = true;
+}
+    activeObject.locked = true;
+
 }
 
 
