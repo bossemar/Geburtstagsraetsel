@@ -34,6 +34,9 @@ const wrongSound = new Audio('sounds/wrong.mp3');
 const playerImage = new Image();
 playerImage.src = 'images/player.png';
 
+const mapImage = new Image();
+mapImage.src = 'images/map.png';
+
 const objectImages = [
     new Image(),
     new Image(),
@@ -99,10 +102,22 @@ function move(dx, dy) {
 }
 
 function drawGame() {
-    ctx.clearRect(0,0,canvas.width, canvas.height);
+    // ctx.clearRect(0,0,canvas.width, canvas.height);
 
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+// Hintergrund (Map)
+ctx.drawImage(
+    mapImage,
+    0,
+    0,
+    canvas.width,
+    canvas.height
+);
+
+    
     // Raster
-    ctx.strokeStyle = "#ccc";
+  //  ctx.strokeStyle = "#ccc";
     for(let i=0;i<=gridSize;i++){
         ctx.beginPath();
         ctx.moveTo(i*tileSize,0);
