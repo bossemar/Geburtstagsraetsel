@@ -211,7 +211,7 @@ function checkObject() {
         alert(obj.text);
         return;
     }
-
+/*
     // Rätselobjekt
 if (obj.type === "puzzle" && !obj.solved) {
 
@@ -245,7 +245,7 @@ if (obj.type === "puzzle" && !obj.solved) {
         }
     }
 }
-
+*/
 }
 
 function solvePuzzle(obj) {
