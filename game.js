@@ -123,6 +123,24 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+document.addEventListener('keydown', (e) => {
+    if (!dialogOpen) return;
+
+    if (e.key === 'Enter') {
+        e.preventDefault();
+
+        // Nur bei Input-Rätseln
+        if (
+            activeObject &&
+            activeObject.type === "puzzle" &&
+            (!activeObject.puzzleType || activeObject.puzzleType === "input")
+        ) {
+            dialogConfirmBtn.click();
+        }
+    }
+});
+
+
 // Touch-Buttons
 document.querySelectorAll('#touch-controls button').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -225,7 +243,7 @@ function checkObject() {
     // ✅ GELÖSTE PUZZLES IGNORIEREN
     if (obj.type === "puzzle" && obj.solved) return;
 
-    openDialog(obj);
+    (obj);
 }
 
 
@@ -244,7 +262,7 @@ if (solvedCount === 4 && door) {
 
     if (infoDialog) {
         infoDialog.locked = false;
-        openDialog(infoDialog);
+        (infoDialog);
     }
 
     drawGame();
@@ -314,6 +332,7 @@ function openDialog(obj) {
 
     if (obj.type === "puzzle") {
         if (!obj.puzzleType || obj.puzzleType === "input") {
+            dialogInput.focus();          // Cursor sofort aktiv
             dialogInput.value = '';
             dialogInput.classList.remove('hidden');
             dialogConfirmBtn.onclick = () => {
