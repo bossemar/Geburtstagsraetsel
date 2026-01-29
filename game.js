@@ -1,3 +1,19 @@
+// ---------- Spielvariablen ----------
+const canvas = document.getElementById('game-canvas');
+const ctx = canvas.getContext('2d');
+
+const startScreen = document.getElementById('start-screen');
+const gameScreen = document.getElementById('game-screen');
+const endScreen = document.getElementById('end-screen');
+const progressEl = document.getElementById('progress');
+const startBtn = document.getElementById('start-btn');
+const restartBtn = document.getElementById('restart-btn');
+const dialogOverlay = document.getElementById('dialog-overlay');
+const dialogText = document.getElementById('dialog-text');
+const dialogInput = document.getElementById('dialog-input');
+const dialogChoices = document.getElementById('dialog-choices');
+const dialogConfirmBtn = document.getElementById('dialog-confirm-btn');
+
 function resizeCanvas() {
     const size = Math.min(window.innerWidth, window.innerHeight) * 0.9;
     canvas.width = size;
@@ -7,25 +23,6 @@ function resizeCanvas() {
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
 let tileSize = canvas.width / gridSize;
-
-// ---------- Spielvariablen ----------
-const canvas = document.getElementById('game-canvas');
-const ctx = canvas.getContext('2d');
-
-const startScreen = document.getElementById('start-screen');
-const gameScreen = document.getElementById('game-screen');
-const endScreen = document.getElementById('end-screen');
-const progressEl = document.getElementById('progress');
-
-const startBtn = document.getElementById('start-btn');
-const restartBtn = document.getElementById('restart-btn');
-
-
-const dialogOverlay = document.getElementById('dialog-overlay');
-const dialogText = document.getElementById('dialog-text');
-const dialogInput = document.getElementById('dialog-input');
-const dialogChoices = document.getElementById('dialog-choices');
-const dialogConfirmBtn = document.getElementById('dialog-confirm-btn');
 
 let dialogOpen = false;
 let activeObject = null;
