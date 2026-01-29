@@ -120,6 +120,7 @@ body {
     background: white;
     padding: 16px;
     border-radius: 12px;
+    color: #0f172a; /* dunkles Slate, sehr gut lesbar */
     width: 90%;
     max-width: 350px;
     text-align: center;
