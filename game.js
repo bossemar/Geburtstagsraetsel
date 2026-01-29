@@ -123,12 +123,6 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-document.addEventListener('keydown', (e) => {
-    if (!dialogOpen) return;
-
-    if (e.key === 'Enter') {
-        e.preventDefault();
-
         // Nur bei Input-Rätseln
         if (
             activeObject &&
@@ -335,15 +329,25 @@ function openDialog(obj) {
             dialogInput.focus();          // Cursor sofort aktiv
             dialogInput.value = '';
             dialogInput.classList.remove('hidden');
-            dialogConfirmBtn.onclick = () => {
-                const value = dialogInput.value.trim().toUpperCase();
-                if (value === obj.answer.toUpperCase()) {
-                    solvePuzzle(obj);
-                    closeDialog();
-                } else {
-                    triggerErrorFeedback();
-                }
-            };
+        const submitAnswer = () => {
+            const value = dialogInput.value.trim().toUpperCase();
+            if (value === obj.answer.toUpperCase()) {
+            solvePuzzle(obj);
+            closeDialog();
+            } else {
+                triggerErrorFeedback();
+            }
+        };
+
+dialogConfirmBtn.onclick = submitAnswer;
+
+dialogInput.onkeydown = (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        submitAnswer();
+    }
+};
+
         }
 
         if (obj.puzzleType === "choice") {
