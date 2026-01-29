@@ -31,7 +31,7 @@ body {
 }
 
 @media (max-width: 768px) {
-    #startButton {
+    #start-btn {
         font-size: 28px;
         padding: 20px 40px;
     }
