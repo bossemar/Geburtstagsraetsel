@@ -16,32 +16,40 @@
     </div>
 
     <!-- Spielbereich -->
-    <div id="game-screen" class="screen hidden">
-        <div id="progress"> 🎯0/4 geschafft</div>
+<div id="game-screen" class="screen hidden">
+    <div id="progress">🎯0/4 geschafft</div>
+
+    <!-- Container für Map + Dialog -->
+    <div id="game-container" style="position: relative;">
         <canvas id="game-canvas" width="500" height="500"></canvas>
 
-                <!-- Dialog Overlay – jetzt korrekt im Body -->
-    <div id="dialog-overlay" class="hidden">
-        <div id="dialog-box">
-            <p id="dialog-text"></p>
+        <!-- Dialog Overlay über der Map -->
+        <div id="dialog-overlay" class="hidden">
+            <div id="dialog-box">
+                <p id="dialog-text"></p>
 
-            <!-- Texteingabe -->
-            <input type="text" id="dialog-input" class="hidden" />
+                <!-- Texteingabe -->
+                <input type="text" id="dialog-input" class="hidden" />
 
-            <!-- Multiple Choice -->
-            <div id="dialog-choices" class="hidden"></div>
+                <!-- Multiple Choice -->
+                <div id="dialog-choices" class="hidden"></div>
 
-            <button id="dialog-confirm-btn">OK</button>
-        
-            <div id="touchControls">
-            <button data-dir="up">▲</button>
-            <div>
+                <button id="dialog-confirm-btn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Touchbuttons fixiert am unteren Rand -->
+    <div id="touchControls">
+        <button data-dir="up">▲</button>
+        <div>
             <button data-dir="left">◀</button>
             <button data-dir="down">▼</button>
             <button data-dir="right">▶</button>
-    </div>
         </div>
     </div>
+</div>
+
         
     </div>
 
