@@ -18,20 +18,23 @@ body {
 }
 
 #game-screen {
+    position: relative; 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100dvh;   /* ← besser als 100vh auf Mobile */
+    padding-bottom: 100px; /* Platz für Touch-Controls */
 }
 #progress {
     position: absolute;
-    top: 10px;
+    top: 12px;
     left: 50%;
     transform: translateX(-50%);
     font-size: 1rem;
     font-weight: 600;
     z-index: 20;
+    pointer-events: none; 
 }
 
 
@@ -65,9 +68,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    flex: 1; /* ← DAS ist der entscheidende Punkt */
+    width: 100%;
 }
 #game-canvas {
     width: min(90vw, 500px);
+    aspect-ratio: 1 / 1;
     height: auto;
     display: block;
     
