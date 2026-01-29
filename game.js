@@ -126,14 +126,17 @@ document.addEventListener('keydown', (e) => {
 
 // Touch-Buttons
 document.querySelectorAll('#touch-controls button').forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('touchstart', e => {
+        e.preventdefault();
+        
+if (dialogOpen) return;
+
         const dir = btn.dataset.dir;
-        switch(dir) {
-            case 'up': move(0, -1); break;
-            case 'down': move(0, 1); break;
-            case 'left': move(-1, 0); break;
-            case 'right': move(1, 0); break;
-        }
+
+        if (dir === "up") movePlayer(0, -1);
+        if (dir === "down") movePlayer(0, 1);
+        if (dir === "left") movePlayer(-1, 0);
+        if (dir === "right") movePlayer(1, 0);
     });
 });
 
