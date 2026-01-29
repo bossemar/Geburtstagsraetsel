@@ -18,8 +18,22 @@ body {
 }
 
 #game-screen {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
+#progress {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1rem;
+    font-weight: 600;
+    z-index: 20;
+}
+
 
 #start-btn {
     font-size: 1.1rem;
@@ -50,6 +64,7 @@ body {
     width: 100vw;
     height: 100vh;
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
     background: #000; /* optional, sauberer Rand */
