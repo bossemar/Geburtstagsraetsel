@@ -125,20 +125,21 @@ document.addEventListener('keydown', (e) => {
     
 
 // Touch-Buttons
-document.querySelectorAll('#touch-controls button').forEach(btn => {
+document.querySelectorAll('#touchControls button').forEach(btn => {
     btn.addEventListener('touchstart', e => {
-        e.preventdefault();
-        
-if (dialogOpen) return;
+        e.preventDefault();
+
+        if (dialogOpen) return;
 
         const dir = btn.dataset.dir;
 
-        if (dir === "up") movePlayer(0, -1);
-        if (dir === "down") movePlayer(0, 1);
-        if (dir === "left") movePlayer(-1, 0);
-        if (dir === "right") movePlayer(1, 0);
+        if (dir === "up") move(0, -1);
+        if (dir === "down") move(0, 1);
+        if (dir === "left") move(-1, 0);
+        if (dir === "right") move(1, 0);
     });
 });
+
 
 // ---------- Spiellogik ----------
 function move(dx, dy) {
