@@ -60,6 +60,7 @@ let objects = [
 const moveSound = new Audio('sounds/move.wav');
 const correctSound = new Audio('sounds/correct.wav');
 const wrongSound = new Audio('sounds/wrong.mp3');
+const winSound = new Audio("sounds/win_sound.wav");
 
 // 🎵 Hintergrundmusik
 const backgroundMusic = new Audio('sounds/backgroundforrest.wav');
@@ -95,6 +96,7 @@ let shakeOffset = 0;
 
 let showSuccessFlash = false;
 
+let winSoundPlayed = false;
 
 // ---------- Event-Listener ----------
 startBtn.addEventListener('click', () => {
@@ -261,7 +263,8 @@ if (solvedCount === 4 && door) {
 if (solvedCount === totalPuzzles) {
     backgroundMusic.pause();        // stoppen
     backgroundMusic.currentTime = 0;
-    
+    winSound.play();
+    winSoundPlayed = true;
     gameScreen.classList.add('hidden');
     endScreen.classList.remove('hidden');
 }
