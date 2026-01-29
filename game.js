@@ -98,6 +98,9 @@ let showSuccessFlash = false;
 
 let winSoundPlayed = false;
 
+let dialogClosing = false;
+
+
 // ---------- Event-Listener ----------
 startBtn.addEventListener('click', () => {
     startScreen.classList.add('hidden');
@@ -328,7 +331,10 @@ function openDialog(obj) {
             dialogInput.focus();          // Cursor sofort aktiv
             dialogInput.value = '';
             dialogInput.classList.remove('hidden');
+          let answerHandled = false;  
         const submitAnswer = () => {
+              if (answerHandled) return;
+    answerHandled = true;
             const value = dialogInput.value.trim().toUpperCase();
             if (value === obj.answer.toUpperCase()) {
             solvePuzzle(obj);
@@ -375,6 +381,8 @@ dialogInput.onkeydown = (e) => {
 
 function closeDialog() {
 
+    if (dialogClosing) return;
+    dialogClosing = true;
     // 🔹 zuerst noch mit activeObject arbeiten
     if (activeObject && activeObject.type === "info") {
         activeObject.solved = true;
@@ -397,6 +405,11 @@ function closeDialog() {
 
     dialogOpen = false;
     activeObject = null; // 🔹 GANZ ZUM SCHLUSS
+
+        // ⏱️ Lock nach kurzem Tick wieder lösen
+    setTimeout(() => {
+        dialogClosing = false;
+    }, 150);
 }
 
 
