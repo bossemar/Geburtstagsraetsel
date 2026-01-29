@@ -130,7 +130,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-start;   /* oben ausrichten */
-    padding-top: 5%;           /* Abstand vom oberen Rand */
+    padding-top: 18dvh;           /* Abstand vom oberen Rand */
     z-index: 10;
 }
 
