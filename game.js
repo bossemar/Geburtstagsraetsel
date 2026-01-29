@@ -122,18 +122,7 @@ document.addEventListener('keydown', (e) => {
         case 'ArrowRight': move(1, 0); break;
     }
 });
-
-        // Nur bei Input-Rätseln
-        if (
-            activeObject &&
-            activeObject.type === "puzzle" &&
-            (!activeObject.puzzleType || activeObject.puzzleType === "input")
-        ) {
-            dialogConfirmBtn.click();
-        }
-    }
-});
-
+    
 
 // Touch-Buttons
 document.querySelectorAll('#touch-controls button').forEach(btn => {
@@ -237,7 +226,7 @@ function checkObject() {
     // ✅ GELÖSTE PUZZLES IGNORIEREN
     if (obj.type === "puzzle" && obj.solved) return;
 
-    (obj);
+    openDialog(obj);
 }
 
 
