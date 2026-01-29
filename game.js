@@ -221,10 +221,13 @@ ctx.restore();
 function checkObject() {
     const obj = objects.find(o => o.x === player.x && o.y === player.y);
     if (!obj || dialogOpen) return;
-    openDialog(obj); 
-    if (obj.solved) return;
 
+    // ✅ GELÖSTE PUZZLES IGNORIEREN
+    if (obj.type === "puzzle" && obj.solved) return;
+
+    openDialog(obj);
 }
+
 
 function solvePuzzle(obj) {
     triggerSuccessFeedback();
