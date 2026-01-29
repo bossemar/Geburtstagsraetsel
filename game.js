@@ -1,3 +1,13 @@
+function resizeCanvas() {
+    const size = Math.min(window.innerWidth, window.innerHeight) * 0.9;
+    canvas.width = size;
+    canvas.height = size;
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+let tileSize = canvas.width / gridSize;
+
 // ---------- Spielvariablen ----------
 const canvas = document.getElementById('game-canvas');
 const ctx = canvas.getContext('2d');
@@ -73,15 +83,14 @@ const objectImages = [
     new Image()
 ];
 
-objectImages[0].src = 'images/object1.png';
-objectImages[1].src = 'images/object2.png';
-objectImages[2].src = 'images/object3.png';
-objectImages[3].src = 'images/object4.png';
-objectImages[4].src = 'images/object5.png';
-objectImages[5].src = 'images/object6.png';
+const objectImages = [];
 
-objectImages.push(new Image());
-objectImages[6].src = 'images/object7.png';
+for (let i = 1; i <= 7; i++) {
+    const img = new Image();
+    img.src = `images/object${i}.png`;
+    objectImages.push(img);
+}
+
 
 
 // Fortschritt
@@ -268,24 +277,25 @@ if (solvedCount === totalPuzzles) {
 }
 
 function triggerErrorFeedback() {
+    wrongSound.currentTime = 0;
     wrongSound.play();
+
     showErrorFlash = true;
+    shakeOffset = 10;
     drawGame();
 
     setTimeout(() => {
         showErrorFlash = false;
+        shakeOffset = 0;
         drawGame();
     }, 300);
-    shakeOffset = 10;
-
-setTimeout(() => {
-    shakeOffset = 0;
-}, 300);
-
 }
 
+
 function triggerSuccessFeedback() {
+    correctSound.currentTime = 0;
     correctSound.play();
+
     showSuccessFlash = true;
     drawGame();
 
