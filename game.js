@@ -69,14 +69,6 @@ playerImage.src = 'images/player.png';
 const mapImage = new Image();
 mapImage.src = 'images/map.png';
 
-const objectImages = [
-    new Image(),
-    new Image(),
-    new Image(),
-    new Image(),
-    new Image(),
-    new Image()
-];
 
 const objectImages = [];
 
