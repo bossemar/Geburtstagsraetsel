@@ -119,8 +119,21 @@ restartBtn.addEventListener('click', () => {
 });
 
 document.addEventListener('keydown', (e) => {
-    if(gameScreen.classList.contains('hidden')) return;
+
+    // ❗ ESC schließt immer den Dialog (wenn offen)
+    if (e.key === 'Escape' && dialogOpen) {
+        e.preventDefault();
+        closeDialog();
+        return;
+    }
+
+    //  Wenn Spiel nicht sichtbar → nichts tun
+    if (gameScreen.classList.contains('hidden')) return;
+
+    // Wenn Dialog offen → keine Bewegung
     if (dialogOpen) return;
+
+    // Bewegung
     switch(e.key) {
         case 'ArrowUp': move(0, -1); break;
         case 'ArrowDown': move(0, 1); break;
@@ -128,6 +141,7 @@ document.addEventListener('keydown', (e) => {
         case 'ArrowRight': move(1, 0); break;
     }
 });
+
     
 
 // Touch-Buttons
