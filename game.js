@@ -1,3 +1,7 @@
+// ---------- Spielfeld-Größe ----------
+const gridSize = 10;    // 10x10 Feld
+let tileSize;           // wird dynamisch gesetzt
+
 // ---------- Spielvariablen ----------
 const canvas = document.getElementById('game-canvas');
 const ctx = canvas.getContext('2d');
@@ -18,11 +22,12 @@ function resizeCanvas() {
     const size = Math.min(window.innerWidth, window.innerHeight) * 0.9;
     canvas.width = size;
     canvas.height = size;
+
+        tileSize = canvas.width / gridSize;  // tileSize jetzt korrekt setzen
 }
 
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
-let tileSize = canvas.width / gridSize;
 
 let dialogOpen = false;
 let activeObject = null;
