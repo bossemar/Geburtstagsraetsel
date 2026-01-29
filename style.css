@@ -60,20 +60,17 @@ body {
 }
 
 
-#gameContainer {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
+#game-container {
     position: relative;
+    display: flex;
     justify-content: center;
     align-items: center;
-    background: #000; /* optional, sauberer Rand */
 }
-
-
 #game-canvas {
-    border: 2px solid #000;
+    width: min(90vw, 500px);
+    height: auto;
     display: block;
+    
 }
 #map {
     transform-origin: center center;
