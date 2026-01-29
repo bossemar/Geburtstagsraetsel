@@ -160,6 +160,19 @@ document.querySelectorAll('#touchControls button').forEach(btn => {
     });
 });
 
+dialogOverlay.addEventListener('pointerdown', (e) => {
+
+    // Nur schließen, wenn wirklich das Overlay angeklickt wurde
+    if (e.target === dialogOverlay && dialogOpen) {
+        e.preventDefault();
+        closeDialog();
+    }
+});
+
+document.getElementById('dialog-box').addEventListener('pointerdown', (e) => {
+    e.stopPropagation();
+});
+
 
 // ---------- Spiellogik ----------
 function move(dx, dy) {
