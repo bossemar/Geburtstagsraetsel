@@ -135,7 +135,7 @@ document.addEventListener('keydown', (e) => {
 
 // Touch-Buttons
 document.querySelectorAll('#touchControls button').forEach(btn => {
-    btn.addEventListener('touchstart', e => {
+    btn.addEventListener('pointerdown', e => {
         e.preventDefault();
 
         if (dialogOpen) return;
