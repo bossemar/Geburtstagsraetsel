@@ -20,8 +20,6 @@ const progressEl = document.getElementById('progress');
 const startBtn = document.getElementById('start-btn');
 const restartBtn = document.getElementById('restart-btn');
 
-const tileSize = 50;
-const gridSize = 10;
 
 const dialogOverlay = document.getElementById('dialog-overlay');
 const dialogText = document.getElementById('dialog-text');
