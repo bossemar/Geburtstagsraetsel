@@ -277,6 +277,17 @@ const totalPuzzles = objects.filter(o => o.type === "puzzle" && !o.locked).lengt
 const door = objects.find(o => o.locked === true && o.img === 6);
 const infoDialog = objects.find(o => o.type === "info" && o.locked === true);
 
+if (solvedCount === 4) {
+    // Tür freischalten
+    if (door) door.locked = false;
+
+    // Info-Dialog freischalten
+    if (infoDialog) infoDialog.locked = false;
+
+    drawGame();  // Map + Tür + Spieler neu zeichnen
+}
+
+    
 if (solvedCount === 4 && door) {
     door.locked = false;
 
