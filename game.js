@@ -51,6 +51,11 @@ const moveSound = new Audio('sounds/move.wav');
 const correctSound = new Audio('sounds/correct.wav');
 const wrongSound = new Audio('sounds/wrong.mp3');
 
+// 🎵 Hintergrundmusik
+const backgroundMusic = new Audio('sounds/backgroundforrest.wav');
+backgroundMusic.loop = true;
+backgroundMusic.volume = 0.3; // bewusst leiser
+
 // Bilder
 
 const playerImage = new Image();
@@ -95,9 +100,12 @@ startBtn.addEventListener('click', () => {
     startScreen.classList.add('hidden');
     gameScreen.classList.remove('hidden');
 
-    closeDialog(); // 🔴 DAS FEHLTE
+    closeDialog(); 
     
     drawGame();
+        // 🎵 Hintergrundmusik starten
+    backgroundMusic.currentTime = 0;
+    backgroundMusic.play();
 });
 
 restartBtn.addEventListener('click', () => {
@@ -242,6 +250,9 @@ if (solvedCount === 4 && door) {
 
 
 if (solvedCount === totalPuzzles) {
+    backgroundMusic.pause();        // stoppen
+    backgroundMusic.currentTime = 0;
+    
     gameScreen.classList.add('hidden');
     endScreen.classList.remove('hidden');
 }
