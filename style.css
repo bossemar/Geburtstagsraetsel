@@ -93,16 +93,18 @@ body {
 }
 
 
+/* Standard: zentriert auf Desktop */
 #dialog-overlay {
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.4);
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; /* vertical center */
     z-index: 10;
 }
 
+/* Dialog-Box */
 #dialog-box {
     background: white;
     padding: 20px;
@@ -111,18 +113,23 @@ body {
     max-width: 400px;
     text-align: center;
     line-height: 1.4;
+    overflow-wrap: break-word; /* lange Texte umbrechen */
 }
 
+/* Mobile: Dialog oben platzieren */
 @media (max-width: 768px) {
     #dialog-overlay {
-        align-items: flex-start;
-        padding-top: 40px;
+        align-items: flex-start;  /* nach oben ausrichten */
+        padding-top: 40px;        /* Abstand vom oberen Rand */
     }
 
     #dialog-box {
-        font-size: 1rem;
+        font-size: 1rem;          /* etwas größere Schrift für Handys */
+        max-height: 80vh;         /* Box darf maximal 80% der Höhe einnehmen */
+        overflow-y: auto;         /* Scrollbar, falls Text länger ist */
     }
 }
+
 
 
 #dialog-box button {
