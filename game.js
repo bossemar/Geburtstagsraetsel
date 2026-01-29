@@ -297,9 +297,10 @@ function triggerSuccessFeedback() {
 
 function openDialog(obj) {
     if (!obj) return;
-
+    
     dialogOpen = true;
     activeObject = obj;
+    dialogConfirmBtn.focus();
 
     dialogText.textContent = obj.text;
     dialogOverlay.classList.remove('hidden');
@@ -329,6 +330,7 @@ function openDialog(obj) {
             closeDialog();
             } else {
                 triggerErrorFeedback();
+                closeDialog();
             }
         };
 
@@ -356,6 +358,7 @@ dialogInput.onkeydown = (e) => {
                         closeDialog();
                     } else {
                         triggerErrorFeedback();
+                        closeDialog();
                     }
                 };
                 dialogChoices.appendChild(btn);
@@ -382,6 +385,10 @@ function closeDialog() {
 
     dialogConfirmBtn.onclick = null;
     dialogConfirmBtn.style.display = 'inline-block';
+
+    dialogConfirmBtn.blur();
+    dialogInput.blur();
+
 
     dialogOpen = false;
     activeObject = null; // 🔹 GANZ ZUM SCHLUSS
