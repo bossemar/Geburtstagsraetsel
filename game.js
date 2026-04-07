@@ -248,7 +248,8 @@ if (showSuccessFlash) {
 }
 
    // Fortschritt
- const totalPuzzles = objects.filter(o => o.type === "puzzle").length;
+// const totalPuzzles = objects.filter(o => o.type === "puzzle").length;
+    const totalPuzzles = objects.filter(o => o.type === "puzzle" && !o.locked).length;
 progressEl.textContent = `🎯 ${solvedCount}/${totalPuzzles} geschafft`;
     
 // Falsche Antwort 
@@ -287,16 +288,16 @@ if (solvedCount === 4) {
     drawGame();  // Map + Tür + Spieler neu zeichnen
 }
 
-    
-if (solvedCount === 4 && door) {
-    door.locked = false;
+//   wieder auskommentieren, wenn code nicht läuft
+//if (solvedCount === 4 && door) {
+//    door.locked = false;
 
-    if (infoDialog) {
-        infoDialog.locked = false;
-    }
+//    if (infoDialog) {
+ //       infoDialog.locked = false;
+ //   }
 
-    drawGame();
-}
+ //   drawGame();
+//}
 
 
 
