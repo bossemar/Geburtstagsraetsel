@@ -17,6 +17,7 @@ const dialogText = document.getElementById('dialog-text');
 const dialogInput = document.getElementById('dialog-input');
 const dialogChoices = document.getElementById('dialog-choices');
 const dialogConfirmBtn = document.getElementById('dialog-confirm-btn');
+const TOTAL_PUZZLES = objects.filter(o => o.type === "puzzle").length;
 
 function resizeCanvas() {
     const size = Math.min(window.innerWidth, window.innerHeight) * 0.9;
@@ -192,11 +193,13 @@ function drawGame() {
 
     // Fehlermeldung wenn falsch
     const offset = shakeOffset ? Math.random() * shakeOffset - shakeOffset / 2 : 0;
+    
     ctx.save();
     ctx.translate(offset, 0);
 
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
 
 // Hintergrund (Map)
 ctx.drawImage(
@@ -250,7 +253,7 @@ if (showSuccessFlash) {
    // Fortschritt
 // const totalPuzzles = objects.filter(o => o.type === "puzzle").length;
     const totalPuzzles = objects.filter(o => o.type === "puzzle" && !o.locked).length;
-progressEl.textContent = `🎯 ${solvedCount}/${totalPuzzles} geschafft`;
+progressEl.textContent = `🎯 ${solvedCount}/${TOTAL_PUZZLES} geschafft`;
     
 // Falsche Antwort 
 ctx.restore();
