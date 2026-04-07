@@ -48,10 +48,10 @@ let objects = [
     {x: 8, y: 6, type: "puzzle", solved: false, text: "🧩 Vervollständige: _ A _ _U _ G", answer: "HAMBURG", img: 3},
 
      // Dialogobjekte (neue)
-    {x: 1, y: 5, type: "info", text: "Hm, das scheint nicht richtig zu sein. Ich muss weitersuchen.",img: 4},
-    {x: 6, y: 4, type: "info", text: "Hm, das scheint nicht richtig zu sein. Ich muss weitersuchen.", img: 5}, 
+    {x: 1, y: 5, type: "info", text: "Hm, das scheint nicht richtig zu sein. Du musst weitersuchen.",img: 4},
+    {x: 6, y: 4, type: "info", text: "Hm, das scheint nicht richtig zu sein. Du musst weitersuchen.", img: 5}, 
     { x: 4,y: 0,type: "puzzle",puzzleType: "input",locked: true,solved: false,text: "Deine Antworten: Wellness, Handtuch, Hamburg.\n Letzte Frage: Was ist also nun dein Geschenk? _ _ _",answer: "SPA",img: 6},
-    {x:4, y:0, type: "info",locked: true,text: "🚪 Eine Tür ist erschienen...\nVielleicht solltest du dort nachsehen."
+    {x:4, y:1, type: "info",locked: true,text: "🚪 Eine Tür ist erschienen...\nVielleicht solltest du dort nachsehen."
 }
 
 ];
