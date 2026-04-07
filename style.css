@@ -164,6 +164,7 @@ body {
 
 .endcard {
     background: #f7f7f7;          /* leicht heller */
+    color: #0f172a;
     border: 3px solid #999;       /* dunkler & dicker */
     border-radius: 16px;
     padding: 20px;
