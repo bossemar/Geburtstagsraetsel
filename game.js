@@ -252,7 +252,7 @@ if (showSuccessFlash) {
    // Fortschritt
 // const totalPuzzles = objects.filter(o => o.type === "puzzle").length;
     const totalPuzzles = objects.filter(o => o.type === "puzzle" && !o.locked).length;
-progressEl.textContent = 🎯 ${solvedCount}/${totalPuzzles} geschafft;
+progressEl.textContent = '🎯 ${solvedCount}/${totalPuzzles} geschafft';
     
 // Falsche Antwort 
 ctx.restore();
