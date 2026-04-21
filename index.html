@@ -16,25 +16,25 @@
         </br></br></br></br></br></br></br></br></br><button id="start-btn">Spiel starten</button>
     </div>
 
-    <!-- Spielbereich -->
-<div id="progress-bar-container">
-  <div id="progress-bar">
-    <span id="progress-text">🎯 0/4 geschafft</span>
-  </div>
-</div>
+    <div id="game-screen" class="screen hidden">
+
+    <!-- Fortschrittsbalken MUSS hier rein -->
+    <div id="progress-bar-container">
+        <div id="progress-bar">
+            <span id="progress-text">🎯 0/4 geschafft</span>
+        </div>
+    </div>
+
     <!-- Container für Map + Dialog -->
-    <div id="game-container" style="position: relative;">
+    <div id="game-container">
         <canvas id="game-canvas" width="500" height="500"></canvas>
 
-        <!-- Dialog Overlay über der Map -->
         <div id="dialog-overlay" class="hidden">
             <div id="dialog-box">
                 <p id="dialog-text"></p>
 
-                <!-- Texteingabe -->
                 <input type="text" id="dialog-input" class="hidden" />
 
-                <!-- Multiple Choice -->
                 <div id="dialog-choices" class="hidden"></div>
 
                 <button id="dialog-confirm-btn">OK</button>
@@ -42,7 +42,7 @@
         </div>
     </div>
 
-    <!-- Touchbuttons fixiert am unteren Rand -->
+    <!-- Touchbuttons -->
     <div id="touchControls">
         <button data-dir="up">▲</button>
         <div>
@@ -51,6 +51,7 @@
             <button data-dir="right">▶</button>
         </div>
     </div>
+
 </div>
 
         
