@@ -251,7 +251,8 @@ if (showSuccessFlash) {
 
    // Fortschritt
 // const totalPuzzles = objects.filter(o => o.type === "puzzle").length;
-    const totalPuzzles = objects.filter(o => o.type === "puzzle" && !o.locked).length;
+// Ausgeklammert 21.4.    const totalPuzzles = objects.filter(o => o.type === "puzzle" && !o.locked).length;
+const totalPuzzles = objects.filter(o => o.type === "puzzle").length;
 progressEl.textContent = '🎯 ${solvedCount}/${totalPuzzles} geschafft';
     
 // Falsche Antwort 
@@ -276,7 +277,8 @@ function solvePuzzle(obj) {
     solvedCount++;
     drawGame();
 
-const totalPuzzles = objects.filter(o => o.type === "puzzle" && !o.locked).length;
+// Ausgeklammert 21.04. const totalPuzzles = objects.filter(o => o.type === "puzzle" && !o.locked).length;
+const totalPuzzles = objects.filter(o => o.type === "puzzle").length;
 const door = objects.find(o => o.locked === true && o.img === 6);
 const infoDialog = objects.find(o => o.type === "info" && o.locked === true);
 
