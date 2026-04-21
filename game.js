@@ -253,7 +253,10 @@ if (showSuccessFlash) {
 // const totalPuzzles = objects.filter(o => o.type === "puzzle").length;
 // Ausgeklammert 21.4.    const totalPuzzles = objects.filter(o => o.type === "puzzle" && !o.locked).length;
 const totalPuzzles = objects.filter(o => o.type === "puzzle").length;
-// progressEl.textContent = `🎯 ${solvedCount}/${totalPuzzles} geschafft`;
+progressEl.textContent = `🎯 ${solvedCount}/${totalPuzzles} geschafft`;
+const progressBar = document.getElementById('progress-bar');
+const percent = (solvedCount / totalPuzzles) * 100;
+progressBar.style.width = percent + '%';
     
 // Falsche Antwort 
 ctx.restore();
