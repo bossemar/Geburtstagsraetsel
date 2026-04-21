@@ -300,7 +300,7 @@ if (solvedCount === 4) {
 
     drawGame();
 }
-}
+
 
 //   wieder auskommentieren, wenn code nicht läuft
 //if (solvedCount === 4 && door) {
