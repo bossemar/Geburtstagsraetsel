@@ -290,10 +290,16 @@ if (solvedCount === 4) {
     // Tür freischalten
     if (door) door.locked = false;
 
-    // Info-Dialog freischalten
-    if (infoDialog) infoDialog.locked = false;
+    // Info-Dialog freischalten + SOFORT anzeigen
+    if (infoDialog) {
+        infoDialog.locked = false;
+    setTimeout(() => {
+    openDialog(infoDialog);
+}, 200);// ⭐ DAS ist der entscheidende Punkt
+    }
 
-    drawGame();  // Map + Tür + Spieler neu zeichnen
+    drawGame();
+}
 }
 
 //   wieder auskommentieren, wenn code nicht läuft
