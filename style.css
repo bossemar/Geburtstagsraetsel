@@ -72,6 +72,23 @@ body {
     flex: 1; /* ← DAS ist der entscheidende Punkt */
     width: 100%;
 }
+
+#progress-bar-container {
+    width: 80%;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 10px;
+    margin: 10px auto;
+    overflow: hidden;
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #4caf50;
+    transition: width 0.3s ease;
+}
+
 #game-canvas {
     width: min(90vw, 500px);
     aspect-ratio: 1 / 1;
