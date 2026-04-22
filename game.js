@@ -41,16 +41,16 @@ let player = { x: 0, y: 0 };
 
 // Objekte mit Positionen
 let objects = [
-    {x: 2, y: 3, type: "puzzle", solved: false, text: "🧩 Buchstabensalat: SENSLEWL", answer: "WELLNESS", img: 0},
+    {x: 2, y: 3, type: "puzzle", solved: false, text: "🧩 In der gehobenen Küche zählt nicht nur der Geschmack, sondern auch die Auszeichnung. Vervollständige das Wort:_ I_HE_ _ N", answer: "MICHELIN", img: 0},
     {x: 7, y: 1, type: "puzzle", puzzleType: "choice", solved: false, text: "🧩 Welche der folgenden Eigenschaften beschreibt am besten einen typischen, trockenen Riesling aus Deutschland?",
     choices: ["A: Schwere, buttrige Noten mit wenig Säure", "B: Leichte, knackige Säure mit Aromen von grünen Äpfeln und Zitrusfrüchten", "C: Dunkle Beerenaromen und Tannine", "D: Süße Süßweinaromen und Rosinen"], correctIndex: 1, img: 1},
-    {x: 4, y: 8, type: "puzzle", solved: false, text: "🧩 Ich werde nass, wenn ich trockne - was bin ich?", answer: "HANDTUCH", img: 2},
-    {x: 8, y: 6, type: "puzzle", solved: false, text: "🧩 Vervollständige: _ A _ _U _ G", answer: "HAMBURG", img: 3},
+    {x: 4, y: 8, type: "puzzle", solved: false, text: "🧩 „Ich war früher wichtig für die Versorgung einer Stadt. Heute biete ich Menschen einen besonderen Ort zum Schlafen. Ich trage den Namen eines Bauwerks.", answer: "WASSERTURM", img: 2},
+    {x: 8, y: 6, type: "puzzle", solved: false, text: "🧩 Mehr als nur Essen, Ein Erlebnis für alle Sinne, Nicht einfach ein Gericht, Überraschung in mehreren Gängen", answer: "MENÜ", img: 3},
 
      // Dialogobjekte (neue)
     {x: 1, y: 5, type: "info", text: "Hm, das scheint nicht richtig zu sein. Du musst weitersuchen.",img: 4},
     {x: 6, y: 4, type: "info", text: "Hm, das scheint nicht richtig zu sein. Du musst weitersuchen.", img: 5}, 
-    { x: 9,y: 0,type: "puzzle",puzzleType: "input",locked: true,solved: false,text: "Deine Antworten: Wellness, Handtuch, Hamburg.\n Letzte Frage: Was ist also nun dein Geschenk? _ _ _",answer: "SPA",img: 6},
+    { x: 9,y: 0,type: "puzzle",puzzleType: "input",locked: true,solved: false,text: "Deine Antworten: Michelin, Wasserturm, Menü.\n Letzte Frage: Wo gehts denn hin?",answer: "HAMBURG",img: 6},
     {x:8, y:9, type: "info",id: "doorHint", locked: true,text: "🚪 Eine Tür ist erschienen...\nVielleicht solltest du dort nachsehen."
 }
 
